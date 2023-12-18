@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Camera, Audio, and Location Access</title>
+    <style>
+      /* Basic styling */
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+      #camera-preview {
+        width: 300px;
+        height: 225px;
+        border: 2px solid #333;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+      .permission-btn {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      #capture-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      #captured-image {
+        max-width: 100%;
+        display: none;
+        margin-bottom: 15px;
+      }
+      #location-info {
+        font-size: 16px;
+        margin-top: 15px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Camera, Audio, and Location Access</h1>
+    <div id="camera-preview">
+      <video id="video-feed" playsinline></video>
+      <canvas id="capture-canvas" style="display: none"></canvas>
+    </div>
+    <button id="audio-permission-btn" class="permission-btn">
+      Request Audio Permission
+    </button>
+    <button id="location-permission-btn" class="permission-btn">
+      Request Location Permission
+    </button>
+    <button id="capture-btn">Capture Image</button>
+    <img id="captured-image" alt="Captured Image" />
+    <p id="location-info">Location: <span id="coordinates"></span></p>
+
+    <script>
+      // Function to start camera when the Capture Image button is clicked
+      document
+        .getElementById("capture-btn")
+        .addEventListener("click", function () {
+          navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then(function (stream) {
+              const video = document.getElementById("video-feed");
+              video.srcObject = stream;
+              video.onloadedmetadata = function (e) {
+                video.play();
+              };
+            })
+            .catch(function (err) {
+              console.error("Error accessing the camera: ", err);
+            });
+        });
+
+      // Capture image from video feed
+      document
+        .getElementById("capture-btn")
+        .addEventListener("click", function () {
+          const video = document.getElementById("video-feed");
+          const canvas = document.getElementById("capture-canvas");
+          const context = canvas.getContext("2d");
+
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const imageURL = canvas.toDataURL("image/png");
+
+          const capturedImage = document.getElementById("captured-image");
+          capturedImage.src = imageURL;
+          capturedImage.style.display = "block";
+        });
+
+      // Request audio permission when the Request Audio Permission button is clicked
+      document
+        .getElementById("audio-permission-btn")
+        .addEventListener("click", function () {
+          navigator.mediaDevices
+            .getUserMedia({ audio: true })
+            .then(function (stream) {
+              console.log("Audio permission granted");
+              // You can use the audio stream here if needed
+            })
+            .catch(function (err) {
+              console.error("Error accessing the microphone: ", err);
+            });
+        });
+
+      // Request location permission when the Request Location Permission button is clicked
+      document
+        .getElementById("location-permission-btn")
+        .addEventListener("click", function () {
+          if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+              function (position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                const coordinatesSpan = document.getElementById("coordinates");
+                coordinatesSpan.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+
+                const locationInfo = document.getElementById("location-info");
+                locationInfo.style.display = "block";
+              },
+              function (error) {
+                console.error("Error accessing the location: ", error);
+              }
+            );
+          } else {
+            console.log("Geolocation is not supported by this browser.");
+          }
+        });
+    </script>
+  </body>
+</html>
