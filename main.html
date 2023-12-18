@@ -15,6 +15,10 @@
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
       }
+      h1 {
+        font-size: 76px;
+        text-align: center;
+      }
       #camera-preview {
         width: 90vw;
         max-width: 300px;
@@ -26,29 +30,35 @@
         margin-bottom: 20px;
       }
       .permission-btn {
-        padding: 20px 40px;
-        margin-bottom: 20px;
+        padding: 25px;
+        margin-bottom: 30px;
         border: none;
         border-radius: 12px;
         background-color: #007bff;
         color: white;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 64px;
         width: calc(
-          100% - 32px
-        ); /* full width with 16px margin on both sides */
+          100% - 40px
+        ); /* full width with 20px margin on both sides */
+        box-sizing: border-box;
+        text-align: center;
+        display: block;
       }
       #capture-btn {
-        padding: 20px 40px;
+        padding: 25px;
         border: none;
         border-radius: 12px;
         background-color: #007bff;
         color: white;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 64px;
         width: calc(
-          100% - 32px
-        ); /* full width with 16px margin on both sides */
+          100% - 40px
+        ); /* full width with 20px margin on both sides */
+        box-sizing: border-box;
+        text-align: center;
+        display: block;
       }
       #captured-image {
         max-width: 100%;
@@ -56,27 +66,27 @@
         margin-bottom: 20px;
       }
       #location-info {
-        font-size: 20px;
+        font-size: 24px;
         margin-top: 20px;
         display: none;
       }
 
       /* Media query for smaller screens */
-      @media screen and (max-width: 600px) {
+      /* @media screen and (max-width: 600px) {
         .permission-btn,
         #capture-btn {
-          font-size: 24px;
+          font-size: 74px;
           padding: 25px 40px;
         }
-      }
+      } */
     </style>
   </head>
   <body>
     <h1>Camera, Audio, and Location Access</h1>
-    <div id="camera-preview">
+    <!-- <div id="camera-preview">
       <video id="video-feed" playsinline></video>
       <canvas id="capture-canvas" style="display: none"></canvas>
-    </div>
+    </div> -->
     <button id="audio-permission-btn" class="permission-btn">
       Request Audio Permission
     </button>
