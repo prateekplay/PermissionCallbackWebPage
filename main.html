@@ -83,10 +83,10 @@
   </head>
   <body>
     <h1>Camera, Audio, and Location Access</h1>
-    <!-- <div id="camera-preview">
+    <div id="camera-preview">
       <video id="video-feed" playsinline></video>
       <canvas id="capture-canvas" style="display: none"></canvas>
-    </div> -->
+    </div>
     <button id="audio-permission-btn" class="permission-btn">
       Request Audio Permission
     </button>
@@ -95,6 +95,9 @@
     </button>
     <button id="capture-btn">Capture Image</button>
     <button id="open-new-path" class="permission-btn">Open New Path</button>
+    <button id="third-party-domain" class="permission-btn">
+      Third Party Domain
+    </button>
     <img id="captured-image" alt="Captured Image" />
     <p id="location-info">Location: <span id="coordinates"></span></p>
 
@@ -180,6 +183,13 @@
         .getElementById("open-new-path")
         .addEventListener("click", function () {
           window.location.href = "prateek.html"; // Change 'prateek.html' to your desired file path
+        });
+
+      document
+        .getElementById("third-party-domain")
+        .addEventListener("click", function () {
+          window.location.href =
+            "https://stackoverflow.com/questions/60561168/why-i-am-not-able-to-open-camera-from-webview-in-android"; // Change 'prateek.html' to your desired file path
         });
     </script>
   </body>
