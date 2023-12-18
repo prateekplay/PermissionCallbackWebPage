@@ -16,43 +16,58 @@
         background-color: #f4f4f4;
       }
       #camera-preview {
-        width: 80vw;
+        width: 90vw;
         max-width: 300px;
-        height: calc(60vw - 50px);
+        height: calc(70vw - 50px);
         max-height: 225px;
         border: 2px solid #333;
-        border-radius: 8px;
+        border-radius: 12px;
         overflow: hidden;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
       }
       .permission-btn {
-        padding: 15px 30px;
-        margin-bottom: 15px;
+        padding: 20px 40px;
+        margin-bottom: 20px;
         border: none;
-        border-radius: 8px;
+        border-radius: 12px;
         background-color: #007bff;
         color: white;
         cursor: pointer;
-        font-size: 18px;
+        font-size: 20px;
+        width: calc(
+          100% - 32px
+        ); /* full width with 16px margin on both sides */
       }
       #capture-btn {
-        padding: 15px 30px;
+        padding: 20px 40px;
         border: none;
-        border-radius: 8px;
+        border-radius: 12px;
         background-color: #007bff;
         color: white;
         cursor: pointer;
-        font-size: 18px;
+        font-size: 20px;
+        width: calc(
+          100% - 32px
+        ); /* full width with 16px margin on both sides */
       }
       #captured-image {
         max-width: 100%;
         display: none;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
       }
       #location-info {
-        font-size: 18px;
-        margin-top: 15px;
+        font-size: 20px;
+        margin-top: 20px;
         display: none;
+      }
+
+      /* Media query for smaller screens */
+      @media screen and (max-width: 600px) {
+        .permission-btn,
+        #capture-btn {
+          font-size: 24px;
+          padding: 25px 40px;
+        }
       }
     </style>
   </head>
