@@ -30,8 +30,8 @@
         margin-bottom: 20px;
       }
       .permission-btn {
-        padding: 20px;
-        margin: 20px;
+        padding: 25px;
+        margin-bottom: 30px;
         border: none;
         border-radius: 12px;
         background-color: #007bff;
@@ -82,7 +82,7 @@
     </style>
   </head>
   <body>
-    <h1>Camera, Audio, and Location Access</h1>
+    <h1>Camera, Audio, and Location Access Path #2</h1>
     <!-- <div id="camera-preview">
       <video id="video-feed" playsinline></video>
       <canvas id="capture-canvas" style="display: none"></canvas>
@@ -94,7 +94,6 @@
       Request Location Permission
     </button>
     <button id="capture-btn">Capture Image</button>
-    <button id="open-new-path" class="permission-btn">Open New Path</button>
     <img id="captured-image" alt="Captured Image" />
     <p id="location-info">Location: <span id="coordinates"></span></p>
 
@@ -174,12 +173,6 @@
           } else {
             console.log("Geolocation is not supported by this browser.");
           }
-        });
-
-      document
-        .getElementById("open-new-path")
-        .addEventListener("click", function () {
-          window.location.href = "prateek.html"; // Change 'prateek.html' to your desired file path
         });
     </script>
   </body>
