@@ -94,6 +94,14 @@
       Request Location Permission
     </button>
     <button id="capture-btn">Capture Image</button>
+    <button id="contact-permission-btn" class="permission-btn">
+      Request Contact Permission
+    </button>
+    <button id="file-picker-permission-btn" class="permission-btn">
+      Request File Picker Permission
+    </button>
+    <input type="file" id="file-input" accept="image/*, .pdf, .docx, .txt" />
+    <!-- Accepts specific file types -->
     <button id="open-new-path" class="permission-btn">Open New Path</button>
     <button id="third-party-domain" class="permission-btn">
       Third Party Domain
@@ -176,6 +184,57 @@
             );
           } else {
             console.log("Geolocation is not supported by this browser.");
+          }
+        });
+
+      document
+        .getElementById("contact-permission-btn")
+        .addEventListener("click", function () {
+          if (navigator.contacts) {
+            navigator.permissions
+              .query({ name: "contacts" })
+              .then(function (permissionStatus) {
+                if (permissionStatus.state === "granted") {
+                  console.log("Contacts access already granted.");
+                  // Access contacts here
+                } else {
+                  navigator.contacts
+                    .select(["name", "email", "tel"])
+                    .then(function (contacts) {
+                      console.log("Contacts access granted:", contacts);
+                      // Use contacts data
+                    })
+                    .catch(function (error) {
+                      console.error("Error accessing contacts:", error);
+                    });
+                }
+              })
+              .catch(function (error) {
+                console.error("Error checking contacts permission:", error);
+              });
+          } else {
+            console.log("Contacts API not supported.");
+          }
+        });
+
+      document
+        .getElementById("file-picker-permission-btn")
+        .addEventListener("click", function () {
+          const fileInput = document.getElementById("file-input");
+          fileInput.click(); // Trigger file input click
+        });
+
+      // Handling file selection change
+      document
+        .getElementById("file-input")
+        .addEventListener("change", function (event) {
+          const selectedFile = event.target.files[0]; // Access the selected file
+
+          if (selectedFile) {
+            console.log("Selected file:", selectedFile);
+            // Use the selected file data or perform operations here
+          } else {
+            console.log("No file selected.");
           }
         });
 
