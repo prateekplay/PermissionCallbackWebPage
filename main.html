@@ -189,31 +189,17 @@
 
       document
         .getElementById("contact-permission-btn")
-        .addEventListener("click", function () {
-          if (navigator.contacts) {
-            navigator.permissions
-              .query({ name: "contacts" })
-              .then(function (permissionStatus) {
-                if (permissionStatus.state === "granted") {
-                  console.log("Contacts access already granted.");
-                  // Access contacts here
-                } else {
-                  navigator.contacts
-                    .select(["name", "email", "tel"])
-                    .then(function (contacts) {
-                      console.log("Contacts access granted:", contacts);
-                      // Use contacts data
-                    })
-                    .catch(function (error) {
-                      console.error("Error accessing contacts:", error);
-                    });
-                }
-              })
-              .catch(function (error) {
-                console.error("Error checking contacts permission:", error);
-              });
-          } else {
-            console.log("Contacts API not supported.");
+        .addEventListener("click", async function () {
+          try {
+            const contacts = await navigator.contacts.select([
+              "name",
+              "email",
+              "tel",
+            ]);
+            console.log("Selected contacts:", contacts);
+            // Handle the selected contacts here
+          } catch (error) {
+            console.error("Error selecting contacts:", error);
           }
         });
 
