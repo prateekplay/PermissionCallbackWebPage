@@ -190,16 +190,21 @@
       document
         .getElementById("contact-permission-btn")
         .addEventListener("click", async function () {
+          if ("contacts" in navigator && "select" in navigator.contacts) {
           try {
-            const contacts = await navigator.contacts.select([
-              "name",
-              "email",
-              "tel",
-            ]);
-            console.log("Selected contacts:", contacts);
-            // Handle the selected contacts here
-          } catch (error) {
-            console.error("Error selecting contacts:", error);
+            const contacts = await navigator
+              .contacts
+              .select(
+              ['name', 'tel', 'email'],
+              {multiple: true}
+              );
+
+            console.log("Your first contact: " + contacts[0].name + " " + contacts[0].tel);
+          } catch () {
+            console.log("Unexpected error happened in Contact Picker API");
+          }
+          } else {
+          console.log("Your browser doesn't support Contact Picker API");
           }
         });
 
