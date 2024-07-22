@@ -108,6 +108,7 @@
     </button>
     <img id="captured-image" alt="Captured Image" />
     <p id="location-info">Location: <span id="coordinates"></span></p>
+    <button id="open-url-btn" class="permission-btn">Open Tiket URL</button>
 
     <script>
       // Function to start camera when the Capture Image button is clicked
@@ -241,6 +242,33 @@
           window.location.href =
             "https://3rd-party-domain.vercel.app/main.html"; // Change 'prateek.html' to your desired file path
         });
+
+        document.getElementById("open-url-btn").addEventListener("click", function () {
+  const url = "https://www.tiket.com/cross-app-request/add-to-calendar" +
+    "?requestId=car-request-id-12345" +
+    "&requestType=edit" +
+    "&content=" + encodeURIComponent(JSON.stringify({
+      eventAddedMessage: "Event added successfully.",
+      eventExistsMessage: "This event already exists.",
+      eventPermissionNotGrantedMessage: "Calendar permission not granted.",
+      time: {
+        start: "2024-07-25T10:00:00Z",
+        end: "2024-07-25T11:00:00Z"
+      },
+      title: "Meeting with Team",
+      remindIn: 15,
+      place: {
+        coordinate: {
+          longitude: -122.084,
+          latitude: 37.421998
+        },
+        name: "Googleplex"
+      }
+    }));
+
+  window.location.href = url;
+});
+  
     </script>
   </body>
 </html>
