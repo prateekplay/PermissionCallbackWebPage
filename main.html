@@ -248,22 +248,17 @@
     "?requestId=car-request-id-12345" +
     "&requestType=edit" +
     "&content=" + encodeURIComponent(JSON.stringify({
-      eventAddedMessage: "Event added successfully.",
-      eventExistsMessage: "This event already exists.",
-      eventPermissionNotGrantedMessage: "Calendar permission not granted.",
-      time: {
-        start: "2024-07-25T10:00:00Z",
-        end: "2024-07-25T11:00:00Z"
-      },
-      title: "Meeting with Team",
-      remindIn: 15,
-      place: {
-        coordinate: {
-          longitude: -122.084,
-          latitude: 37.421998
-        },
-        name: "Googleplex"
-      }
+    "id": 123123456,
+    "title": "Flight Ticket Booked: Jakarta - Bali",
+    "description": "Ticket is being booked from Jakarta to Bali via AirIndia",
+    "beginTime": 1234,
+    "endTime": 12322,
+    "allDay": true,
+    "allowedReminders": "30",
+    "eventLocation": "NewDelhi 28.644800,77.216721",
+    "organizer": "pratiekray@gmail.com",
+    "customAppPackage": "com.tiket.gits",
+    "customAppUri": ""
     }));
 
   window.location.href = url;
